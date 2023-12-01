@@ -1,5 +1,4 @@
 filename = '2023/input/day1.txt'
-
 lines = open(filename, 'r').readlines()
 
 sum = 0
