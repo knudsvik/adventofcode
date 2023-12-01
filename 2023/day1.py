@@ -1,4 +1,4 @@
-filename = '2023/day1.txt'
+filename = '2023/input/day1.txt'
 
 lines = open(filename, 'r').readlines()
 
