@@ -1,4 +1,4 @@
-filename = 'day1.txt'
+filename = '2023/day1.txt'
 
 lines = open(filename, 'r').readlines()
 
@@ -36,22 +36,17 @@ class BreakLoop(Exception):
 sum = 0
 
 for line in lines:
-    nu = ""
-    front = "unknown"
-    back = "unknown"
     try:
         t = ""
         for char in line:
             if char.isdigit():
                 front_number = int(char)
-                front = "num"
                 raise BreakLoop
             else:
                 t += char
                 for key in text_numbers:
                     if key in t:
                         front_number = text_numbers[key]
-                        front = "text"
                         raise BreakLoop
     except BreakLoop:
         pass
@@ -60,14 +55,12 @@ for line in lines:
         for char in reversed(line.strip()):
             if char.isdigit():
                 back_number = int(char)
-                back = "num"
                 raise BreakLoop
             else:
                 t = char + t
                 for key in text_numbers:
                     if key in t:
                         back_number = text_numbers[key]
-                        back = "text"
                         raise BreakLoop
     except BreakLoop:
         pass
