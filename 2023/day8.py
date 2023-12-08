@@ -21,7 +21,5 @@ while node != 'ZZZ':
         if node == 'ZZZ':
             break
         elements = nodes[node]
-        #if steps == len(directions):
-        #    directions += lines[0].strip('\n')
 
 print(steps)
