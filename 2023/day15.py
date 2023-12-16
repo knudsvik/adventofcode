@@ -14,13 +14,6 @@ for step in steps:
         current += ord(character)
         current = current * 17
         current = current % 256
-        # print(f"character: {character}, {current}")
     sum += current
 
 print(sum)
-
-#lower = {chr(i+96):i for i in range(1,27)}
-#upper = {chr(i+64):i for i in range(1,27)}
-#for key in upper:
-#  upper[key] += 26
-#priorities = {**lower, **upper}
