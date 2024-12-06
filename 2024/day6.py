@@ -18,16 +18,12 @@ movement = {
 # Check if the next move goes out of bounds
 def check_end(x, y, direction):
     if direction == 'N' and y == 0:  # Heading North at the top border
-        print("going out")
         return True
     elif direction == 'E' and x == cs_width:  # Heading East at the right border
-        print("going out")
         return True
     elif direction == 'S' and y == cs_height:  # Heading South at the bottom border
-        print("going out")
         return True
     elif direction == 'W' and x == 0:  # Heading West at the left border
-        print("going out")
         return True
     return False
 
@@ -56,5 +52,46 @@ while end_of_cs != True:
     
 
 count = sum(row.count('X') for row in cs)
-print(f"Visits: {count}")
+print(f"Visits in part 1: {count}")
 
+# part two
+
+obstacles = 0
+
+cs = [list(line.strip()) for line in lines]
+end_of_cs = False
+x, y = Sx, Sy
+
+steps = 0
+
+for col in range(cs_width + 1):
+
+    for row in range(cs_height + 1):
+
+        #print(f"Column: {col}, Row: {row}")
+
+        #if col == 6 and row == 7:
+        #    pass
+
+        if cs[row][col] != '#':
+            cs[row][col] = '#'
+
+            while end_of_cs != True and steps < 20000:
+                dx, dy = movement[directions[direction_index]]
+                if cs[y + dy][x + dx] != '#':
+                    x, y = x + dx, y + dy
+                    cs[y][x] = 'X'
+                else:
+                    direction_index = (direction_index + 1) % len(directions)
+                steps += 1
+                end_of_cs = check_end(x, y, directions[direction_index])
+            if steps == 20000:
+                obstacles += 1
+                #print(f"Obstacle set in x: {col}, y: {row}")
+            steps = 0
+            end_of_cs = False
+            x, y = Sx, Sy
+            direction_index = 0 
+            cs[row][col] = '.'
+
+print(f"Possible obstacles: {obstacles}")
